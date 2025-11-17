@@ -4,25 +4,38 @@ from selenium.webdriver.support import expected_conditions as EC
 from locators import *
 
 
-def test_move_to_fillings_sections_button(driver):
-    driver.get("https://stellarburgers.education-services.ru/")
-    driver.find_element(*FILLINGS_BUTTON).click()
+class TestRegistration:
 
-    assert driver.find_element(By.XPATH, "//h2[text()='Начинки']").is_displayed()
+    def test_move_to_fillings_sections_button(self, driver):
+        driver.get("https://stellarburgers.education-services.ru/")
+        button = driver.find_element(*FILLINGS_BUTTON)
+        parent = button.find_element(*FILLINGS_BUTTON_PARENT)
 
+        button.click()
 
-def test_move_to_buns_section_button(driver):
-    driver.get("https://stellarburgers.education-services.ru/")
-    driver.find_element(*FILLINGS_BUTTON).click()
-    driver.find_element(*BUNS_BUTTON).click()
+        WebDriverWait(driver, 5).until(EC.text_to_be_present_in_element_attribute((FILLINGS_BUTTON_PARENT), 'class', 'tab_tab_type_current'))
 
-    assert driver.find_element(By.XPATH, "//h2[text()='Булки']").is_displayed()
+        assert "tab_tab_type_current" in parent.get_attribute("class")
 
+    def test_move_to_buns_section_button(self, driver):
+        driver.get("https://stellarburgers.education-services.ru/")
+        driver.find_element(*FILLINGS_BUTTON).click()
+        button = driver.find_element(*BUNS_BUTTON)
+        parent = driver.find_element(*BUNS_BUTTON_PARENT)
 
-def test_move_to_sauces_section_button(driver):
-    driver.get("https://stellarburgers.education-services.ru/")
-    driver.find_element(*SAUCES_BUTTON).click()
+        button.click()
 
-    assert driver.find_element(By.XPATH, "//h2[text()='Соусы']").is_displayed()
+        WebDriverWait(driver, 5).until(EC.text_to_be_present_in_element_attribute((BUNS_BUTTON_PARENT), 'class', 'tab_tab_type_current'))
 
+        assert "tab_tab_type_current" in parent.get_attribute("class")
 
+    def test_move_to_sauces_section_button(self, driver):
+        driver.get("https://stellarburgers.education-services.ru/")
+        button = driver.find_element(*SAUCES_BUTTON)
+        parent = driver.find_element(*SAUCES_BUTTON_PARENT)
+
+        button.click()
+
+        WebDriverWait(driver, 5).until(EC.text_to_be_present_in_element_attribute((SAUCES_BUTTON_PARENT), 'class', 'tab_tab_type_current'))
+
+        assert "tab_tab_type_current" in parent.get_attribute("class")

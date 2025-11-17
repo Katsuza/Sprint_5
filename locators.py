@@ -18,6 +18,10 @@ MAIN_PAGE_LOGIN_BUTTON = (By.XPATH, "//button[text()='Войти в аккаун
 FORMS_LOGIN_LINK = (By.CLASS_NAME, 'Auth_link__1fOlj') #Кнопка Войти в форме регистарции/восстановления пароля
 PERSONAL_ACCOUNT_BUTTON = (By.XPATH, "//p[text()='Личный Кабинет']") #Кнопка Личный Кабинет
 
+REGISTARTION_BUTTON = (By.XPATH, "//a[text()='Зарегистрироваться']")
+PASSWORD_RESET = (By.XPATH, "//a[text()='Восстановить пароль']")
+
+
 #Главная страница
 CONSTRUCTOR_LINK_BUTTON = (By.XPATH, "//*[@id='root']/div/header/nav/ul/li[1]/a/p") #Кнопка Конструктор
 LOGO_BUTTON = (By.XPATH, "//*[@id='root']/div/header/nav/div/a") #Кнопка-Логотип
@@ -28,3 +32,7 @@ LOGOUT_BUTTON = (By.XPATH, "//button[text()='Выход']") #Кнопка "Вы�
 BUNS_BUTTON = (By.XPATH, "//span[text()='Булки']")
 SAUCES_BUTTON = (By.XPATH, "//span[text()='Соусы']")
 FILLINGS_BUTTON = (By.XPATH, "//span[text()='Начинки']")
+
+BUNS_BUTTON_PARENT = (By.XPATH, "//span[text()='Булки']/..")
+SAUCES_BUTTON_PARENT = (By.XPATH, "//span[text()='Соусы']/..")
+FILLINGS_BUTTON_PARENT = (By.XPATH, "//span[text()='Начинки']/..")

@@ -5,28 +5,29 @@ from generators import generate_email, generate_password
 from locators import *
 
 
-def test_registation_correct_date_success(driver):
-    driver.get("https://stellarburgers.education-services.ru/register")
-    driver.find_element(*REGISTRATION_NAME_FIELD).send_keys('Artem')
-    driver.find_element(*REGISTRATION_EMAIL_FIELD).send_keys(generate_email())
-    driver.find_element(*REGISTRATION_PASSWORD_FIELD).send_keys(generate_password())
+class TestRegistration:
 
-    driver.find_element(*REGISTRATION_SUMBIT_BUTTON).click()
+    def test_registation_correct_date_success(self, driver):
+        driver.get("https://stellarburgers.education-services.ru/register")
+        driver.find_element(*REGISTRATION_NAME_FIELD).send_keys('Artem')
+        driver.find_element(*REGISTRATION_EMAIL_FIELD).send_keys(generate_email())
+        driver.find_element(*REGISTRATION_PASSWORD_FIELD).send_keys(generate_password())
 
-    WebDriverWait(driver, 5).until(EC.url_to_be("https://stellarburgers.education-services.ru/login"))
+        driver.find_element(*REGISTRATION_SUMBIT_BUTTON).click()
 
-    assert driver.current_url == 'https://stellarburgers.education-services.ru/login'
+        WebDriverWait(driver, 5).until(EC.url_to_be("https://stellarburgers.education-services.ru/login"))
 
+        assert driver.current_url == 'https://stellarburgers.education-services.ru/login'
 
-def test_registartion_short_password_failure(driver):
-    driver.get("https://stellarburgers.education-services.ru/register")
-    driver.find_element(*REGISTRATION_NAME_FIELD).send_keys('Artem')
-    driver.find_element(*REGISTRATION_EMAIL_FIELD).send_keys(generate_email())
-    driver.find_element(*REGISTRATION_PASSWORD_FIELD).send_keys('12345')
+    def test_registartion_short_password_failure(self, driver):
+        driver.get("https://stellarburgers.education-services.ru/register")
+        driver.find_element(*REGISTRATION_NAME_FIELD).send_keys('Artem')
+        driver.find_element(*REGISTRATION_EMAIL_FIELD).send_keys(generate_email())
+        driver.find_element(*REGISTRATION_PASSWORD_FIELD).send_keys('12345')
 
-    driver.find_element(*REGISTRATION_SUMBIT_BUTTON).click()
+        driver.find_element(*REGISTRATION_SUMBIT_BUTTON).click()
 
-    assert driver.find_element(*INCORRECT_PASSWORD_TEXT).is_displayed()
+        assert driver.find_element(*INCORRECT_PASSWORD_TEXT).is_displayed()
 
 
 

@@ -3,6 +3,7 @@ from selenium import webdriver
 from locators import *
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from generators import *
 
 
 @pytest.fixture
@@ -14,9 +15,20 @@ def driver():
 
 
 @pytest.fixture
-def exicting_user():
-    user = {'email': 'Katsu123@ya.ru', 'password': 'Katsu123@ya.ru'}
-    return user
+def exicting_user(driver):
+    email = generate_email()
+    password = generate_password()
+
+    driver.get("https://stellarburgers.education-services.ru/register")
+    driver.find_element(*REGISTRATION_NAME_FIELD).send_keys('Artem')
+    driver.find_element(*REGISTRATION_EMAIL_FIELD).send_keys(email)
+    driver.find_element(*REGISTRATION_PASSWORD_FIELD).send_keys(password)
+
+    driver.find_element(*REGISTRATION_SUMBIT_BUTTON).click()
+
+    WebDriverWait(driver, 5).until(EC.visibility_of_element_located(LOGIN_SUBMIT_BUTTON))
+
+    return {"email": email, "password": password}
 
 
 @pytest.fixture
