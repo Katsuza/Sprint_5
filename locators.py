@@ -28,11 +28,11 @@ LOGO_BUTTON = (By.XPATH, "//*[@id='root']/div/header/nav/div/a") #Кнопка-�
 
 LOGOUT_BUTTON = (By.XPATH, "//button[text()='Выход']") #Кнопка "Выход" в Личном кабинете
 
-#Разделы Конструктора
-BUNS_BUTTON = (By.XPATH, "//span[text()='Булки']")
-SAUCES_BUTTON = (By.XPATH, "//span[text()='Соусы']")
-FILLINGS_BUTTON = (By.XPATH, "//span[text()='Начинки']")
+ORDER_BUTTON = (By.XPATH, "//button[text()='Оформить заказ']")
 
-BUNS_BUTTON_PARENT = (By.XPATH, "//span[text()='Булки']/..")
-SAUCES_BUTTON_PARENT = (By.XPATH, "//span[text()='Соусы']/..")
-FILLINGS_BUTTON_PARENT = (By.XPATH, "//span[text()='Начинки']/..")
+#Разделы Конструктора
+BUNS_BUTTON = (By.XPATH, "//span[text()='Булки']/parent::div")
+SAUCES_BUTTON = (By.XPATH, "//span[text()='Соусы']/parent::div")
+FILLINGS_BUTTON = (By.XPATH, "//span[text()='Начинки']/parent::div")
+
+ACTIVE_TAB = (By.XPATH, "//div[contains(@class, 'tab_tab_type_current')]/span")

@@ -16,7 +16,7 @@ class TestLogin:
 
         WebDriverWait(driver, 5).until(EC.url_to_be("https://stellarburgers.education-services.ru/"))
 
-        assert driver.find_element(By.XPATH, "//button[text()='Оформить заказ']").is_displayed()
+        assert driver.find_element(*ORDER_BUTTON).is_displayed()
 
     def test_login_from_personal_account_button(self, driver, exicting_user):
         driver.get("https://stellarburgers.education-services.ru/")
@@ -28,7 +28,7 @@ class TestLogin:
 
         WebDriverWait(driver, 5).until(EC.url_to_be("https://stellarburgers.education-services.ru/"))
 
-        assert driver.find_element(By.XPATH, "//button[text()='Оформить заказ']").is_displayed()
+        assert driver.find_element(*ORDER_BUTTON).is_displayed()
 
     def test_login_from_registration_form_button(self, driver, exicting_user):
         driver.get("https://stellarburgers.education-services.ru/login")
@@ -44,7 +44,7 @@ class TestLogin:
 
         WebDriverWait(driver, 5).until(EC.url_to_be("https://stellarburgers.education-services.ru/"))
 
-        assert driver.find_element(By.XPATH, "//button[text()='Оформить заказ']").is_displayed()
+        assert driver.find_element(*ORDER_BUTTON).is_displayed()
 
     def test_login_from_password_reset_form_button(self, driver, exicting_user):
         driver.get("https://stellarburgers.education-services.ru/login")
@@ -60,5 +60,5 @@ class TestLogin:
 
         WebDriverWait(driver, 5).until(EC.url_to_be("https://stellarburgers.education-services.ru/"))
 
-        assert driver.find_element(By.XPATH, "//button[text()='Оформить заказ']").is_displayed()
+        assert driver.find_element(*ORDER_BUTTON).is_displayed()
         
